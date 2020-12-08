@@ -14,10 +14,12 @@ TEST = True
 lista_pilotos = []
 lista_carreras = []
 lista_resultados = []
+lista_posiciones = []
 
 # Constantes (Dato que no cambia)
 PILOTOS_NOMBRE_ARCHIVO = "fichero_pilotos.csv"
 CARRERAS_NOMBRE_ARCHIVO = "fichero_carreras.csv"
+POSICIONES_NOMBRE_ARCHIVO = "fichero_posiciones.csv"
 
 #FUNCIONES ESPECIALES
 def mostrar_bienvenida():
@@ -144,12 +146,21 @@ def registrar_resultados():
 
     id_carrera = int(input("Ingrese id de carrera: "))
     
-
-
     for piloto in lista_pilotos:
         posicion = int(input("Posición de " + piloto["nombre"] + ": "))
 
-    
+        posicion_diccionario = {}
+
+        posicion_diccionario["id"] = (len(lista_posiciones)) + 1
+        posicion_diccionario["id_carrera"] = id_carrera
+        posicion_diccionario["id_piloto"] = piloto["id"]
+        posicion_diccionario["posicion"] = posicion
+
+        lista_posiciones.append(posicion_diccionario)
+
+        guardar_cvs(POSICIONES_NOMBRE_ARCHIVO, lista_posiciones)
+
+
 
 #FUNCIONES NIVES 3 (SUBMENUS)
 
@@ -397,6 +408,13 @@ if TEST:
     for carrera in input_listacarreras:
         lista_carreras.append(carrera)
 
+    # abrimos el fichero csv de posiciones
+    input_listaposiciones = csv.DictReader(open(POSICIONES_NOMBRE_ARCHIVO))
+
+    # cargamos las posiciones existentes (lista_posiciones)    
+    for posicion in input_listaposiciones:
+        lista_posiciones.append(posicion)
+
     registrar_resultados()
 else:    
     # definir nombre de nombre_usuario al arrancar programa
@@ -416,6 +434,15 @@ else:
     # cargamos las carreras existentes (lista_carreras)    
     for carrera in input_listacarreras:
         lista_carreras.append(carrera)
+
+    # POSICIONES_NOMBRE_ARCHIVO
+
+    # abrimos el fichero csv de posiciones
+    input_listaposiciones = csv.DictReader(open(POSICIONES_NOMBRE_ARCHIVO))
+
+    # cargamos las posiciones existentes (lista_posiciones)    
+    for posicion in input_listaposiciones:
+        lista_posiciones.append(posicion)
 
     mostrar_bienvenida()
     pause()
