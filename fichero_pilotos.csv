@@ -1,0 +1,23 @@
+id,nombre,siglas,pais,edad,equipo,posicion_GP_1,posicion_GP_2,posicion_GP_3,posicion_G_1
+1,Sebastian Vettel,VET,Alemania,33,Ferrari,10,20,6,1
+2,Lewis Hamilton,HAM,Reino Unido,35,Mercedes,4,1,1,2
+3,Valteri Bottas,BOT,Finlandia,31,Mercedes,1,2,3,3
+4,Daniel Ricciardo,RIC,Australia,31,Renault,19,8,8,4
+5,Carlos Sainz,SAI,Espa�a,26,Mclaren,5,9,13,5
+6,Lando Norris,NOR,Reino Unido,21,Renault,3,5,19,6
+7,Nicolas Latifi,LAT,Canada,25,Williams,11,17,16,7
+8,Kimi Raikkonen,RAI,Finlandia,41,Alfa Romeo,14,11,15,8
+9,Romain Grosjean,GRO,Francia,34,Haas,16,13,9,9
+10,Pierre Gasly,GAS,Francia,24,Alpha Tauri,7,15,20,10
+11,Sergio Perez,PER,Mexico,30,Racing Point,6,6,7,11
+12,Charles Leclerc,LEC,Monaco,23,Ferrari,2,19,11,12
+13,Lance Stroll,STR,Canada,22,Racing Point,18,7,4,13
+14,Kevin Magnussen,MAG,Dinamarca,28,Haas,17,12,10,14
+15,Alexander Albon,ALB,Tailandia,24,Red Bull,13,4,5,15
+16,Daniil Kvyat,KVY,Rusia,26,Alpha Tauri,12,10,12,16
+17,Esteban Ocon,OCO,Francia,24,Renault,8,18,14,17
+18,Marx Verstappen,VER,Holanda,23,Red Bull,20,3,2,18
+19,George Russell,RUS,Reino Unido,22,Williams,15,16,18,19
+PER,Nicolas,GIO,Chile,33,Perú,9,14,17,20
+PER,Nicolas,GIO,Chile,33,Perú,9,14,17,21
+22,Ricardo,SOT,España,33,Ni Idea,,,,
