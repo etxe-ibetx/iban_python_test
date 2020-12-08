@@ -120,11 +120,11 @@ def menu_carreras ():
 def menu_resultados():
     while(True):
         print ("------------------------------------------------------")
-        print ("      ***  RESULTADOS Y CLASIFICACIONES  ***     ")
-        print ("------------------------------------------------------ \n")
+        print ("      ***  RESULTADOS Y CLASIFICACIONES  ***          ")
+        print ("------------------------------------------------------")
         print (" (1) Registrar resultados")
-        print (" (2) Clasificación de pilotos ")
-        print (" (3) Clasificación de equipos ")
+        print (" (2) Clasificación de pilotos")
+        print (" (3) Clasificación de equipos")
         print (" (4) Resultados por carrera")
         print (" (0) Volver al menu principal\n")
 
@@ -134,12 +134,53 @@ def menu_resultados():
             mostrar_menuprin()
         elif (op_menu == "1"):
             registrar_resultados()
-       # elif (op_menu == "2"):
-            #listar_clasificacion()
+        elif (op_menu == "2"):
+            calificacion_pilotos()
        # elif (op_menu == "3"):
            # listar_clasequipos()
     return
 
+def obtener_puntaje_total(piloto_buscar):
+    # acumulador
+    puntaje_total = 0
+    
+    for posicion in lista_posiciones:
+        if posicion["id_piloto"] == piloto_buscar["id"]:
+            puntaje_total = puntaje_total + int(posicion["puntos"])
+
+    return puntaje_total
+
+
+def calificacion_pilotos():
+    for piloto in lista_pilotos:
+        puntaje_total = obtener_puntaje_total(piloto)
+
+        print(piloto["nombre"] + " : " + str(puntaje_total) + " pts.")
+
+def obtener_puntaje(posicion):
+    if posicion == 1:
+        return 25
+    elif posicion == 2:
+        return 18
+    elif posicion == 3:
+        return 15
+    elif posicion == 4:
+        return 10
+    elif posicion == 5:
+        return 8
+    elif posicion == 6:
+        return 6
+    elif posicion == 7:
+        return 5
+    elif posicion == 8:
+        return 3
+    elif posicion == 9:
+        return 2
+    elif posicion == 10:
+        return 1
+    else:
+        return 0
+        
 def registrar_resultados():
     mostrar_todo = False
     listar_carreras(mostrar_todo)
@@ -155,12 +196,11 @@ def registrar_resultados():
         posicion_diccionario["id_carrera"] = id_carrera
         posicion_diccionario["id_piloto"] = piloto["id"]
         posicion_diccionario["posicion"] = posicion
+        posicion_diccionario["puntos"] = obtener_puntaje(posicion)
 
         lista_posiciones.append(posicion_diccionario)
 
         guardar_cvs(POSICIONES_NOMBRE_ARCHIVO, lista_posiciones)
-
-
 
 #FUNCIONES NIVES 3 (SUBMENUS)
 
@@ -416,6 +456,7 @@ if TEST:
         lista_posiciones.append(posicion)
 
     registrar_resultados()
+    calificacion_pilotos()
 else:    
     # definir nombre de nombre_usuario al arrancar programa
     print ("TECLEE SU NOMBRE: ")
