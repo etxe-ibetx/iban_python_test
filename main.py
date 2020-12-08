@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 import csv
 import sys
 
@@ -8,8 +7,6 @@ Created on Sat Nov 21 15:38:40 2020
 
 @author: Nerea
 """
-
-TEST = True
 
 lista_pilotos = []
 lista_carreras = []
@@ -136,9 +133,27 @@ def menu_resultados():
             registrar_resultados()
         elif (op_menu == "2"):
             calificacion_pilotos()
-       # elif (op_menu == "3"):
-           # listar_clasequipos()
+        elif (op_menu == "4"):
+            resultado_por_carrera()
     return
+
+def obtener_nombre_piloto(posicion):
+    id_piloto = posicion["id_piloto"]
+
+    for piloto in lista_pilotos:
+        if piloto["id"] == id_piloto:
+            return piloto["nombre"]
+
+def resultado_por_carrera():
+    mostrar_todo = False
+    listar_carreras(mostrar_todo)
+
+    id_carrera = int(input("Ingrese id de carrera: "))
+
+    for posicion in lista_posiciones:
+        if posicion["id_carrera"] == str(id_carrera):
+            nombre_piloto = obtener_nombre_piloto(posicion)
+            print(posicion["posicion"] + ".- " + nombre_piloto)
 
 def obtener_puntaje_total(piloto_buscar):
     # acumulador
@@ -431,60 +446,36 @@ def guardar_cvs(nombre_archivo, lista):
     file.close()    
 
 #----------------------PROGRAMA PRINCIPAL---------------------------------------
-if TEST:
-    nombre_usuario = "Pato"
+# definir nombre de nombre_usuario al arrancar programa
+print ("TECLEE SU NOMBRE: ")
+nombre_usuario = str(input ()).upper() 
 
-    # abrimos el fichero csv de pilotos
-    input_listapilotos = csv.DictReader(open(PILOTOS_NOMBRE_ARCHIVO))
+# abrimos el fichero csv de pilotos
+input_listapilotos = csv.DictReader(open(PILOTOS_NOMBRE_ARCHIVO))
 
-    # cargamos los pilotos existentes en la lista de pilotos (lsta_pilotos)    
-    for piloto in input_listapilotos:
-        lista_pilotos.append(piloto)
+# cargamos los pilotos existentes en la lista de pilotos (lsta_pilotos)    
+for piloto in input_listapilotos:
+    lista_pilotos.append(piloto)
 
-    # abrimos el fichero csv de carreras
-    input_listacarreras = csv.DictReader(open(CARRERAS_NOMBRE_ARCHIVO))
+# abrimos el fichero csv de carreras
+input_listacarreras = csv.DictReader(open(CARRERAS_NOMBRE_ARCHIVO))
 
-    # cargamos las carreras existentes (lista_carreras)    
-    for carrera in input_listacarreras:
-        lista_carreras.append(carrera)
+# cargamos las carreras existentes (lista_carreras)    
+for carrera in input_listacarreras:
+    lista_carreras.append(carrera)
 
-    # abrimos el fichero csv de posiciones
-    input_listaposiciones = csv.DictReader(open(POSICIONES_NOMBRE_ARCHIVO))
+# POSICIONES_NOMBRE_ARCHIVO
 
-    # cargamos las posiciones existentes (lista_posiciones)    
-    for posicion in input_listaposiciones:
-        lista_posiciones.append(posicion)
+# abrimos el fichero csv de posiciones
+input_listaposiciones = csv.DictReader(open(POSICIONES_NOMBRE_ARCHIVO))
 
-    registrar_resultados()
-    calificacion_pilotos()
-else:    
-    # definir nombre de nombre_usuario al arrancar programa
-    print ("TECLEE SU NOMBRE: ")
-    nombre_usuario = str(input ()).upper() 
+# cargamos las posiciones existentes (lista_posiciones)    
+for posicion in input_listaposiciones:
+    lista_posiciones.append(posicion)
 
-    # abrimos el fichero csv de pilotos
-    input_listapilotos = csv.DictReader(open(PILOTOS_NOMBRE_ARCHIVO))
+print(lista_posiciones)
 
-    # cargamos los pilotos existentes en la lista de pilotos (lsta_pilotos)    
-    for piloto in input_listapilotos:
-        lista_pilotos.append(piloto)
-
-    # abrimos el fichero csv de carreras
-    input_listacarreras = csv.DictReader(open(CARRERAS_NOMBRE_ARCHIVO))
-
-    # cargamos las carreras existentes (lista_carreras)    
-    for carrera in input_listacarreras:
-        lista_carreras.append(carrera)
-
-    # POSICIONES_NOMBRE_ARCHIVO
-
-    # abrimos el fichero csv de posiciones
-    input_listaposiciones = csv.DictReader(open(POSICIONES_NOMBRE_ARCHIVO))
-
-    # cargamos las posiciones existentes (lista_posiciones)    
-    for posicion in input_listaposiciones:
-        lista_posiciones.append(posicion)
-
-    mostrar_bienvenida()
-    pause()
-    mostrar_menuprin()
+mostrar_bienvenida()
+pause()
+mostrar_menuprin() 
+    
